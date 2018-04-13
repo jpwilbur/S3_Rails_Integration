@@ -1,18 +1,36 @@
-class Admin::UploadsController < ApplicationController
+class UploadsController < ApplicationController
+  def new
+  end
+
   def create
+    # Make an object in your bucket for your upload
+    obj = S3_BUCKET.bucket(ENV['S3_BUCKET']).object(params[:file].original_filename)
 
-    file = S3_BUCKET.bucket(ENV['S3_BUCKET']).object(params[:file].original_filename)
-
-    # uploads file from tmp directory to S3 (file is created as a publicly readable file by default)
-    upload_status = file.upload_file(
+    upload_status = obj.upload_file(
       File.expand_path(params[:file].tempfile),
-      {acl: params[:viewable]}
+      {acl: 'public-read'}
     )
 
     File.delete(params[:file].tempfile)
 
-    if !upload_status
-      render json: {message: "Upload to AWS Failed"}, status: :internal_server_error and return
+    # Create an object for the upload
+    @upload = Upload.new(
+    		url: obj.public_url,
+		name: obj.key
+    	)
+
+    # Save the upload
+    if @upload.save
+      redirect_to uploads_path, success: 'File successfully uploaded'
+    else
+      flash.now[:notice] = 'There was an error'
+      render :new
     end
+  end
+
+  def index
+  
+    @uploads = Upload.all
+
   end
 end
