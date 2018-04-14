@@ -169,7 +169,9 @@ Now that I did the boring stuff, lets get the app running so you can give it a s
 
 Run the following:
 
-`bundle install rake db:create && rake db:migrate rails server`
+```bundle install 
+rake db:create && rake db:migrate rails server
+```
 
 
 Go to your browser and navigate to localhost:3000
