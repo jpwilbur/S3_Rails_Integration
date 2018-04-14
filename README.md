@@ -20,7 +20,8 @@ Ruby on Rails, S3
 
 First steps are to download the dependencies that Rails and Ruby require. To begin run the following code on your server:
 
-```curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+```bash
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 
@@ -35,7 +36,8 @@ sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libread
 
 The next step, we need to install Ruby. rbenv is a package that manages this installation.
 
-```cd
+```bash
+cd
 
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 
@@ -63,17 +65,23 @@ If you are planning on creating an application, you may want to set up ssh keys 
 
 You will need NodeJS in your environment to run as your Javascript runtime. These lets you use some features for Javascript compilation within your app.
 
-`curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - sudo apt-get install -y nodejs`
+```bash
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - sudo apt-get install -y nodejs
+```
 
 
 Now you can install Rails
 
-`gem install rails`
+```bash
+gem install rails
+```
 
 
 Run a rehash to get rails going
 
-`rbenv rehash`
+```bash
+rbenv rehash
+```
 
 
 Congrats! You have Rails on your machine. However, you need it connected to a DB in order to be a functioning web server.
@@ -82,7 +90,8 @@ Congrats! You have Rails on your machine. However, you need it connected to a DB
 
 You will need a database running for your application. This portion of the instructions can be replaced with several different services. RDS can be used in the same way with less installation time (but higher connection time).
 
-```sudo sh -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
+```bash
+sudo sh -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
 
 wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
 
@@ -97,14 +106,18 @@ sudo apt-get install postgresql-9.5 libpq-dev
 
 Next step is to make a user.
 
-`sudo service postgresql start`
+```bash
+sudo service postgresql start
+```
 
 
 ## Exercise 3: Make an application
 
 We already have an application that you can work with for this. cd into the directory you would like it in.
 
-`git clone git@github.com:jpwilbur/S3_Rails_Integration.git`
+```bash
+git clone git@github.com:jpwilbur/S3_Rails_Integration.git
+```
 
 
 Yay. You have an app.
@@ -131,12 +144,15 @@ Ok, now to use these magical keys.
 
 Go to your Ubuntu terminal in your application's main directory and input the following:
 
-`nano .env`
+```bash
+nano .env
+```
 
 
 You will now have a blank nano page. Congrats. You will need to input the following info in there, of course replacing the placeholders with your secret keys (you DO NOT NEED QUOTATION MARKS). Also, your bucket's region is the endpoint, code form the region. You can find the one you used [here](https://docs.aws.amazon.com/general/latest/gr/rande.html#apigateway_region):
 
-```AWS_ACCESS_KEY_ID=INSERT_YOUR_ACCESS_KEY_ID_HERE 
+```
+AWS_ACCESS_KEY_ID=INSERT_YOUR_ACCESS_KEY_ID_HERE 
 AWS_SECRET_ACCESS_KEY=INSERT_YOUR_SECRET_KEY_HERE
 S3_BUCKET=INSERT_YOUR_BUCKET_NAME
 S3_REGION=INSERT_YOUR_BUCKETS_REGION 
@@ -147,14 +163,18 @@ Tada!! Your ruby app will use this file to input these global variables where it
 
 Go on over to a file for me. (you may have to change it according to where you put it and where you are in the system)
 
-`nano config/initializers/aws.rb`
+```bash
+nano config/initializers/aws.rb
+```
 
 
 This is where the magic happens. Remember that `.env` file? Well this is the place that needed it. Those placeholders you see will be replaced with the info you gave that `.env` file. Neato.
 
 How about another?
 
-`nano app/controllers/uploads_controller.rb`
+```bash
+nano app/controllers/uploads_controller.rb
+```
 
 
 I'm assuming you're familiar with an mvc controller. This is Rails' controller that facilitates the upload of your file.
@@ -169,7 +189,8 @@ Now that I did the boring stuff, lets get the app running so you can give it a s
 
 Run the following:
 
-```bundle install 
+```bash
+bundle install
 rake db:create && rake db:migrate rails server
 ```
 
