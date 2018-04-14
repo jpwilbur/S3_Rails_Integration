@@ -20,7 +20,7 @@ Ruby on Rails, S3
 
 First steps are to download the dependencies that Rails and Ruby require. To begin run the following code on your server:
 
-`curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+```curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 
@@ -28,13 +28,14 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 
 sudo apt-get update
 
-sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs yarn`
+sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs yarn
+```
 
 
 
 The next step, we need to install Ruby. rbenv is a package that manages this installation.
 
-`cd
+```cd
 
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 
@@ -46,13 +47,14 @@ exec $SHELL
 
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
-echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc`
+echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+```
 
 
 
 The last command checks to ensure that you have installed rbenv correctly and that ruby is now on your machine. You should see the ruby version number.
 
-`gem install bundler`
+gem install bundler`
 
 
 This command is to install bundler which is used to install gem packages for your Rails application later from your gemfile.
@@ -66,7 +68,7 @@ You will need NodeJS in your environment to run as your Javascript runtime. Thes
 
 Now you can install Rails
 
-`gem install rails`
+'gem install rails`
 
 
 Run a rehash to get rails going
@@ -80,7 +82,17 @@ Congrats! You have Rails on your machine. However, you need it connected to a DB
 
 You will need a database running for your application. This portion of the instructions can be replaced with several different services. RDS can be used in the same way with less installation time (but higher connection time).
 
-`sudo sh -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' &gt; /etc/apt/sources.list.d/pgdg.list" wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add - sudo apt-get update sudo apt-get install postgresql-common sudo apt-get install postgresql-9.5 libpq-dev`
+```sudo sh -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
+
+wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+
+sudo apt-get update
+
+sudo apt-get install postgresql-common
+
+sudo apt-get install postgresql-9.5 libpq-dev
+```
+
 
 
 Next step is to make a user.
@@ -124,7 +136,8 @@ Go to your Ubuntu terminal in your application's main directory and input the fo
 
 You will now have a blank nano page. Congrats. You will need to input the following info in there, of course replacing the placeholders with your secret keys (you DO NOT NEED QUOTATION MARKS). Also, your bucket's region is the endpoint, code form the region. You can find the one you used [here](https://docs.aws.amazon.com/general/latest/gr/rande.html#apigateway_region):
 
-`AWS\_ACCESS\_KEY\_ID=INSERT\_YOUR\_ACCESS\_KEY\_ID\_HERE AWS\_SECRET\_ACCESS\_KEY=INSERT\_YOUR\_SECRET\_KEY\_HERES3\_BUCKET=INSERT\_YOUR\_BUCKET\_NAMES3\_REGION=INSERT\_YOUR\_BUCKET'S\_REGION ``
+```AWS\_ACCESS\_KEY\_ID=INSERT\_YOUR\_ACCESS\_KEY\_ID\_HERE AWS\_SECRET\_ACCESS\_KEY=INSERT\_YOUR\_SECRET\_KEY\_HERES3\_BUCKET=INSERT\_YOUR\_BUCKET\_NAMES3\_REGION=INSERT\_YOUR\_BUCKET'S\_REGION 
+```
 
 
 Tada!! Your ruby app will use this file to input these global variables where it's needed. We will see them soon. This file is apart of the .gitignore file, which means it wont be put into the remote repo, therefore, no one has your keys. Smart, huh?
@@ -153,7 +166,7 @@ Now that I did the boring stuff, lets get the app running so you can give it a s
 
 Run the following:
 
-`bundle install rake db:create &amp;&amp; rake db:migrate rails server`
+`bundle install rake db:create && rake db:migrate rails server`
 
 
 Go to your browser and navigate to localhost:3000
