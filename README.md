@@ -68,7 +68,7 @@ You will need NodeJS in your environment to run as your Javascript runtime. Thes
 
 Now you can install Rails
 
-'gem install rails`
+`gem install rails`
 
 
 Run a rehash to get rails going
