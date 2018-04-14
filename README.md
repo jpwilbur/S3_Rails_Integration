@@ -63,7 +63,7 @@ If you are planning on creating an application, you may want to set up ssh keys 
 
 You will need NodeJS in your environment to run as your Javascript runtime. These lets you use some features for Javascript compilation within your app.
 
-`curl -sL https://deb.nodesource.com/setup\_8.x | sudo -E bash - sudo apt-get install -y nodejs`
+`curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - sudo apt-get install -y nodejs`
 
 
 Now you can install Rails
@@ -104,7 +104,7 @@ Next step is to make a user.
 
 We already have an application that you can work with for this. cd into the directory you would like it in.
 
-`git clone git@github.com:jpwilbur/S3\_Rails\_Integration.git`
+`git clone git@github.com:jpwilbur/S3_Rails_Integration.git`
 
 
 Yay. You have an app.
@@ -136,7 +136,10 @@ Go to your Ubuntu terminal in your application's main directory and input the fo
 
 You will now have a blank nano page. Congrats. You will need to input the following info in there, of course replacing the placeholders with your secret keys (you DO NOT NEED QUOTATION MARKS). Also, your bucket's region is the endpoint, code form the region. You can find the one you used [here](https://docs.aws.amazon.com/general/latest/gr/rande.html#apigateway_region):
 
-```AWS\_ACCESS\_KEY\_ID=INSERT\_YOUR\_ACCESS\_KEY\_ID\_HERE AWS\_SECRET\_ACCESS\_KEY=INSERT\_YOUR\_SECRET\_KEY\_HERES3\_BUCKET=INSERT\_YOUR\_BUCKET\_NAMES3\_REGION=INSERT\_YOUR\_BUCKET'S\_REGION 
+```AWS_ACCESS_KEY_ID=INSERT_YOUR_ACCESS_KEY_ID_HERE 
+AWS_SECRET_ACCESS_KEY=INSERT_YOUR_SECRET_KEY_HERE
+S3_BUCKET=INSERT_YOUR_BUCKET_NAME
+S3_REGION=INSERT_YOUR_BUCKETS_REGION 
 ```
 
 
@@ -151,7 +154,7 @@ This is where the magic happens. Remember that `.env` file? Well this is the pla
 
 How about another?
 
-`nano app/controllers/uploads\_controller.rb`
+`nano app/controllers/uploads_controller.rb`
 
 
 I'm assuming you're familiar with an mvc controller. This is Rails' controller that facilitates the upload of your file.
