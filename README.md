@@ -50,13 +50,19 @@ exec $SHELL
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+
+exec $SHELL
+
+rbenv install 2.5.0
+
+rbenv global 2.5.0
+
+ruby -v
 ```
-
-
 
 The last command checks to ensure that you have installed rbenv correctly and that ruby is now on your machine. You should see the ruby version number.
 
-gem install bundler`
+`gem install bundler`
 
 
 This command is to install bundler which is used to install gem packages for your Rails application later from your gemfile.
