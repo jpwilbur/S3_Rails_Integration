@@ -191,7 +191,10 @@ Run the following:
 
 ```bash
 bundle install
-rake db:create && rake db:migrate rails server
+
+rake db:create && rake db:migrate 
+
+rails server
 ```
 
 
