@@ -106,16 +106,10 @@ sudo apt-get update
 sudo apt-get install postgresql-common
 
 sudo apt-get install postgresql-9.5 libpq-dev
-```
 
-
-
-Next step is to make a user.
-
-```bash
 sudo service postgresql start
 ```
-
+And now you have a running database on your machine.
 
 ## Exercise 3: Make an application
 
